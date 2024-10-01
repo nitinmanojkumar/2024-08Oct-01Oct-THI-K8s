@@ -27,3 +27,6 @@
  $ docker stop $(docker ps -aq)
  $ docker rm $(docker ps -aq)
  $ docker rmi $(docker images -q)
+
+$ docker pull ssadcloud/myapp-sb:latest
+$ docker run -p 9090:8080 ssadcloud/myapp-sb:latest
