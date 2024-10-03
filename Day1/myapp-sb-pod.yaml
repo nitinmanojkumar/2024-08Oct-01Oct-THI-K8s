@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+
+metadata:
+ name: mypod
+ namspace: kumar
+ # namespace: rishab
+ 
+spec:
+ containers:
+  - name: myapp-sb-container
+    image: ssadcloud/myapp-sb:latest
+
+
+
+  
