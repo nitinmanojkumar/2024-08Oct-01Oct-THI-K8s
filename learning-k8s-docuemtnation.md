@@ -60,3 +60,5 @@ kubectl exec --stdin --tty my-pod -- /bin/sh
 
 # Port Forwarding
 kubectl port-forward svc/myapp-sb-service-by-kumar 9090:9090
+
+# ipconfig /all
