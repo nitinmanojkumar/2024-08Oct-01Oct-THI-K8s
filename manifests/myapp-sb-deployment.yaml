@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: myapp-sb-deployment-by-kumar
+
+spec:
+  replicas: 2
+  
+  selector:
+    matchLabels:
+      app: myapp-sb
+  
+  template:
+    
+    metadata:
+      labels: 
+        app: myapp-sb
+    
+    spec:
+      containers:
+        - name: myapp-sb-container
+          image: ssadcloud/myapp-sb:latest

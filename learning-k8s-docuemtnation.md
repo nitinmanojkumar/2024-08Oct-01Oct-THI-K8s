@@ -42,3 +42,21 @@ $ kind create cluster --name maink8scluster
     yum install docker -y
     docker pull ssadcloud/myapp-sb:latest
     docker run ssadcloud/myapp-sb:latest
+
+# KUBERNETS COMMANDS
+kind get clusters
+
+
+kubectl get nodes
+kubectl get pods
+
+kubectl get deploy
+kubectl describe deployment myapp-sb-deployment-by-kumar
+
+kubectl apply -f mainfest/myapp-sb-deployment.yaml
+kubectl delete -f mainfest/myapp-sb-deployment.yaml
+
+kubectl exec --stdin --tty my-pod -- /bin/sh
+
+# Port Forwarding
+kubectl port-forward svc/myapp-sb-service-by-kumar 9090:9090
