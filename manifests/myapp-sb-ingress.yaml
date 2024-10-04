@@ -1,0 +1,29 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+
+metadata:
+ name: myapp-sb-ingress
+
+spec:
+  # host: 192.168.0.24   - host: "foo.bar.com"
+  rules:
+  - host: kumaran-laptop
+  
+  - http:
+      paths:
+      - path: /myapp
+        pathType: Prefix
+        backend:
+          service:
+            name: myapp-sb-service-by-kumar
+            port:
+              number: 8080
+
+# Without CLoud
+# www.example.com/service1 ---> Ingress -->If Path = s1 ---> Backend Service = myappservice1
+# www.example.com/service2 ---> Ingress -->If Path = s2 ---> Backend Service = myappservice2
+
+# With CLoud
+# www.example.com/service1 ---> LoadBalancer --> Ingress -->If Path = s1 ---> Backend Service = myappservice1
+# www.example.com/service2 ---> LoadBalancer --> Ingress -->If Path = s2 ---> Backend Service = myappservice2
+
