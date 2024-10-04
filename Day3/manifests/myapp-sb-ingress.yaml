@@ -1,15 +1,11 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
-
 metadata:
- name: myapp-sb-ingress
-
+  name: myapp-sb-ingress
 spec:
-  # host: 192.168.0.24   - host: "foo.bar.com"
   rules:
   - host: kumaran-laptop
-  
-  - http:
+    http:
       paths:
       - path: /myapp
         pathType: Prefix
@@ -18,6 +14,7 @@ spec:
             name: myapp-sb-service-by-kumar
             port:
               number: 8080
+
 
 # Without CLoud
 # www.example.com/service1 ---> Ingress -->If Path = s1 ---> Backend Service = myappservice1
