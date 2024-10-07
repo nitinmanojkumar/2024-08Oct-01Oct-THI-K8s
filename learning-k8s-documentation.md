@@ -99,19 +99,27 @@ Key Page: https://kind.sigs.k8s.io/
     docker pull ssadcloud/myapp-sb:latest
     docker run ssadcloud/myapp-sb:latest
 
-7. Push Images to AWS ECR
-    aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 932589472370.dkr.ecr.us-east-2.amazonaws.com
-    docker build -t myapp-sb .
-
-    docker tag myapp-sb:latest 932589472370.dkr.ecr.us-east-2.amazonaws.com/myapp-sb:latest
-    docker push myapp-sb:latest 932589472370.dkr.ecr.us-east-2.amazonaws.com/myapp-sb:latest
-
-8. KUBECTL INSTALLATION ON AWS UBUNTU LINUX MACHINE
+7. KUBECTL INSTALLATION ON AWS UBUNTU LINUX MACHINE
     $ curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
     $ sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 
-9. EKSCTL INSTALLATION
+8. EKSCTL INSTALLATION
    $ curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
    $ sudo mv /tmp/eksctl /usr/local/bin
    $ eksctl version
    $ eksctl create cluster --name sigmaEKS-Cluster --region us-east-2 --nodegroup-name sigmaEKS-Cluster-NG --node-type t2.micro --nodes 2 --nodes-min 2 --nodes-max 5 --ssh-access --ssh-public-key kp --managed
+
+9. Build Source Code
+   mvn clean && mvn package
+
+10. Push Images to AWS ECR
+    aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 932589472370.dkr.ecr.us-east-2.amazonaws.com
+    docker build -t myapp-sb .
+
+    docker tag myapp-sb:latest 932589472370.dkr.ecr.us-east-2.amazonaws.com/myapp-sb:latest
+    docker push 932589472370.dkr.ecr.us-east-2.amazonaws.com/myapp-sb:latest
+
+11. For Deployment 
+    $ kubectl delete -f mainfest/myapp-sb-deployment.yaml
+    $ kubectl apply -f mainfest/myapp-sb-deployment.yaml
+    $ kubectl apply -f mainfest/myapp-sb-service.yaml
