@@ -104,7 +104,7 @@ Key Page: https://kind.sigs.k8s.io/
     docker build -t myapp-sb .
 
     docker tag myapp-sb:latest 932589472370.dkr.ecr.us-east-2.amazonaws.com/myapp-sb:latest
-    docker tag myapp-sb:latest 932589472370.dkr.ecr.us-east-2.amazonaws.com/myapp-sb:latest
+    docker push myapp-sb:latest 932589472370.dkr.ecr.us-east-2.amazonaws.com/myapp-sb:latest
 
 8. KUBECTL INSTALLATION ON AWS UBUNTU LINUX MACHINE
     $ curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
